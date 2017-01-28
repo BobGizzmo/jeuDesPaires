@@ -1,5 +1,7 @@
 .carte{
 	width: 107px;
 	height: 116px;
-	padding: 10px;
+}
+.cartes{
+	padding: 10px 110px 10px 0;
 }
