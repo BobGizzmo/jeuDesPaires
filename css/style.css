@@ -1,0 +1,13 @@
+.carte{
+	width: 214px;
+	height: 232px;
+}
+section{
+	position: relative;
+}
+#chrono{
+	background-color: transparent;
+	color: black;
+	font-weight: bold;
+	border: 1px solid black;
+}
