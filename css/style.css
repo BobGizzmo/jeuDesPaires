@@ -1,16 +1,5 @@
 .carte{
 	width: 107px;
 	height: 116px;
-}
-.divCartes{
-	margin-left: 330px;
-}
-section{
-	position: relative;
-}
-#chrono{
-	background-color: transparent;
-	color: black;
-	font-weight: bold;
-	border: 1px solid black;
+	padding: 10px;
 }
