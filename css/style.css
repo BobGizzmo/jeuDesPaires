@@ -1,6 +1,9 @@
 .carte{
-	width: 214px;
-	height: 232px;
+	width: 107px;
+	height: 116px;
+}
+.divCartes{
+	margin-left: 330px;
 }
 section{
 	position: relative;
