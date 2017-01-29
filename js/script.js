@@ -1,5 +1,5 @@
 var tab = ["img/chat.jpg", "img/ane.jpg", "img/lionne.jpg", "img/lapins.jpg", "img/chien.jpg", "img/ours.jpg", "img/chat.jpg", "img/ane.jpg", "img/lionne.jpg", "img/lapins.jpg", "img/chien.jpg", "img/ours.jpg"];
-var precedImg = "";										//Variables de "sauvegardes"
+var precedImg = ""; var precedAttr = "";										//Variables de "sauvegardes"
 var click = 0;											//Varible gerant les click
 var great = 0; var lose = 0;							// Variable victoire et défaite
 var chron;												//Contiendra le chronometre
@@ -30,8 +30,11 @@ function retourne(id, name){						//FONCTION RETOURNE
 			switch(id){									
 				case i:
 					name.src =tab[i-1];					//Attribution des sources du tableau à chaque images cliquées
+					var attr = "retourne("+(i)+", '"+(i)+"')";
+					name.removeAttribute("onclick");
 					if(click == 0){						//Au premier click et seulement à celui-ci
 						precedImg = name;				//Attribution d'une valeur "sauvegarde" pour comparaison
+						precedAttr = attr;
 						click = 1;						//Empeche de réécrire la sauvegarde au second click
 					}
 					else{
@@ -44,15 +47,15 @@ function retourne(id, name){						//FONCTION RETOURNE
 	 		ready = false;								//On empeche les click durant la phase de comparaison
 			setTimeout(function(){						//Permet de lancer la fonction avec un retard choisit(ici 2secondes)
 				name.src = "img/dosCarte.jpg";			//Retourne les cartes pour les mettre à l'envers
+				name.setAttribute("onclick", attr);
 				precedImg.src = "img/dosCarte.jpg";
+				precedImg.setAttribute("onclick", precedAttr);
 				precedImg = "";							//Effacement de la "sauvegarde" pour la prochaine phase de click
 				click = 0;								
 				ready = true;							//Réautorisation des clicks
 			}, 2000);	
 		}
 		else if(name.src == precedImg.src && click == 2){		//Si 2 images sont identiques
-			name.removeAttribute("onclick");					//Suppression de l'attribut onclick sur les deux images
-			precedImg.removeAttribute("onclick");
 			click = 0;
 			great++;											//Ajoute un point
 		}
@@ -94,7 +97,10 @@ function victoire(){
 }
 
 function recommencer(victoire){										//FONCTION RECOMMENCER
-	var retry = confirm("Vous avez "+victoire+" !\n Recommencer ?");
+	clearInterval(chron);
+	var retry = true;
+	if(victoire)
+		retry = confirm("Vous avez "+victoire+" !\n Recommencer ?");
 	if(retry){
 		var ZJeu = document.getElementsByClassName("carte");				//Recupère toute les cartes de la Zone de jeu
 		for(i = 0; i < ZJeu.length; i++){
